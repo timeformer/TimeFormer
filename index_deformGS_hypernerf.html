@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TimeFormer</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7ZNXPC3HP9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-7ZNXPC3HP9');
+    </script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-PYVRSFMDRL');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="stylesheet" href="./static/css/before_after.css">
+    <link rel="icon" href="./static/images/cameraicon.svg">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+    <link rel="stylesheet" href="./static/css/magnify.css">
+    <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="./static/js/jquery.magnify.js"></script>
+
+</head>
+
+<body>
+<script
+        defer
+        src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"
+></script>
+<link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"
+/>
+<style>
+    .before,
+    .after {
+        margin: 0;
+    }
+
+    .before figcaption,
+    .after figcaption {
+        background: #fff;
+        border: 1px solid #c0c0c0;
+        border-radius: 12px;
+        color: #2e3452;
+        opacity: 0.8;
+        padding: 12px;
+        position: absolute;
+        top: 90%;
+        transform: translateY(-50%);
+        line-height: 100%;
+    }
+
+    .before figcaption {
+        left: 12px;
+    }
+
+    .after figcaption {
+        right: 12px;
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<!--使用Bootstrap的js插件，必须先调入jQuery-->
+<script src="https://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+
+<!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用　-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+<section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column has-text-centered">
+                    <div class="container text-center">
+                        <h1 class="display-1"><a href="https://github.com/ingra14m/Deformable-3D-Gaussians">DeformGS</a>+TimeFormer on <a
+                href="https://github.com/google/hypernerf/releases/tag/v0.1">HyperNeRF Dataset</a></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function pad(num, size) {
+        num = num.toString();
+        while (num.length < size) num = "0" + num;
+        return num;
+    }
+
+    cases = [ 'torchocolate', 'hand1-dense-v2', 'broom2', 'cut-lemon1',]
+    // numbers = [415, 173]
+
+
+    for (var c = 0; c < cases.length; c++) {
+        dataset = cases[c]
+        if (dataset === 'broom2'){
+            max_len = 15
+        }
+        else{
+            max_len = 30
+        }
+
+        document.write(
+        `<section class="section">
+    <div class="container is-max-desktop" id="compare">`
+    )
+
+        for (var i = 0; i < max_len; i++) {
+            document.write(
+                `
+                <div class="rows is-centered has-text-centered">
+
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-one-quarter">
+                        <h4>Ground Truth ${pad(i, 5)}
+                        <a href="compare_rgb/hypernerf/${dataset}_deformGS_GT/${pad(i, 5)}.png" download="${dataset}_deformGS_GT_${pad(i, 5)}.png">Link</a>
+                        </h4>
+                        <img src="compare_rgb/hypernerf/${dataset}_deformGS_GT/${pad(i, 5)}.png">
+                    </div>
+                    <div class="column is-one-quarter">
+                        <h4>DeformGS
+                        <a href="compare_rgb/hypernerf/${dataset}_deformGS/${pad(i, 5)}.png" download="${dataset}_deformGS_${pad(i, 5)}.png">Link</a>
+                        </h4>
+                        <img src="compare_rgb/hypernerf/${dataset}_deformGS/${pad(i, 5)}.png">
+                    </div>
+
+                    <div class="column is-one-quarter">
+                        <h4> + TimeFormer
+                        <a href="compare_rgb/hypernerf/${dataset}_deformGS_ours/${pad(i, 5)}.png" download="${dataset}_deformGS_ours_${pad(i, 5)}.png">Link</a>
+                        </h4>
+                        <img src="compare_rgb/hypernerf/${dataset}_deformGS_ours/${pad(i, 5)}.png">
+                    </div>
+                    <div class="column is-one-quarter">
+
+                        <h4>Compare</h4>
+                        <img-comparison-slider hover="hover" value="75">
+                          <figure slot="first" class="before">
+                            <img width="100%" src="compare_rgb/hypernerf/${dataset}_deformGS/${pad(i, 5)}.png">
+                           <figcaption>Before</figcaption>
+                          </figure>
+                          <figure slot="second" class="after">
+                            <img width="100%" src="compare_rgb/hypernerf/${dataset}_deformGS_ours/${pad(i, 5)}.png">
+                           <figcaption>After</figcaption>
+                          </figure>
+                        </img-comparison-slider>
+
+                    </div>
+                </div>
+
+
+
+            </div>`
+            );
+        }
+
+
+
+        document.write(
+            `
+               <div class="columns is-centered has-text-centered">
+                            <h4>dataset: ${cases[c]}</h4>
+                        </div>
+                        <hr>
+                    <br>
+                </div>
+            </section>`)
+    }
+</script>
+
+
+
+
+</body>
+</html>
